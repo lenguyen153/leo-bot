@@ -53,6 +53,7 @@ class ContextManager:
 
     async def build_context_summary(self, user_id, touchpoint_id, cdp_profile_id, user_message):
         current_context = await self.get_context_summary(user_id, touchpoint_id)
+        # Check if we need to refresh context based on timestamp
         if self._needs_refresh(current_context):
             text_context = await self._retrieve_semantic_context(user_id, user_message)
             return await self._summarize_context(user_id, touchpoint_id, cdp_profile_id, text_context)
@@ -86,7 +87,7 @@ class ContextManager:
         return summary
 
     async def _retrieve_semantic_context(self, user_id, user_message, limit=50):
-        """Retrieve semantically similar messages."""
+        """Retrieve semantically similar messages from DB using LLM embeddings."""
         loop = asyncio.get_event_loop()
         vector = await loop.run_in_executor(
             None, lambda: self.embedding_model.encode(
@@ -119,7 +120,8 @@ class ContextManager:
 
             if not row:
                 return None
-
+            
+            # Parse JSON field and add updated_at timestamp  
             context_data = row["context_data"]
             updated_at = row["updated_at"]
 

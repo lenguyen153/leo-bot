@@ -37,11 +37,6 @@ leobot.add_middleware(
     allow_headers=["*"],
 )
 
-app = FastAPI()
-@app.get("/ping")
-def ping():
-    return {"status": "ok", "msg": "Leo Bot running"}
-
 # ===== Static Files & Templates =====
 leobot.mount("/resources", StaticFiles(directory=RESOURCES_DIR), name="resources")
 templates = Jinja2Templates(directory=TEMPLATES_DIR)

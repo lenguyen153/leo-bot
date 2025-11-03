@@ -8,6 +8,7 @@ from leoai.rag_context_manager import ContextManager
 from leoai.rag_prompt_builder import AgentOrchestrator
 from leoai.rag_knowledge_manager import KnowledgeRetriever
 from leoai.rag_intent_analyzer import IntentAnalyzer
+from leoai.rag_language_detection import detect_language
 from main_config import REDIS_CLIENT
 
 logger = logging.getLogger("RAGAgent")
@@ -37,6 +38,11 @@ class RAGAgent:
         keywords: Optional[List[str]] = None,
     ) -> str:
         try:
+            # Retrieve or detect language
+            if not target_language:
+                target_language = detect_language(user_message)
+            logger.info(f"🌐 Detected language for user {user_id}: {target_language}")
+
             # 0. Analyze intent of user message for keywords storage purpose
             analysis = await self.intent_analyzer.analyze(user_message)
             # 1. Save user message
