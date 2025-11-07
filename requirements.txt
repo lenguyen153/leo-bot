@@ -17,37 +17,37 @@ aiosmtplib
 # === Google Cloud AI & Translation ===
 google-cloud-translate
 google-api-core
-google-genai              # Gemini SDK (already depends on google-api-core)
+google-genai
 
-# === Transformers & Local AI Models ===
+# === Transformers & Local AI Models dependencies ===
 transformers
-torch                     # backend for transformers
-sentence-transformers      # depends on transformers, but needed separately
+torch
+sentence-transformers
 huggingface_hub
-llama-cpp-python           # for local GGUF models (Phi-3, etc.)
+llama-cpp-python
 
-# === LangChain Ecosystem ===
+# === LangChain & Vector DB ===
 langchain
-
-# === Data Validation ===
-pydantic                   # used by FastAPI; pin version only if FastAPI compatibility requires it
-
-# === Databases ===
-psycopg[binary]             # PostgreSQL driver
-asyncpg                     # async PostgreSQL
-sqlalchemy                  # ORM
-python-arango               # ArangoDB driver
-redis                       # caching and stream data
-
-# === Vector Search ===
 pgvector
+
+# === Data Validation & Models ===
+pydantic>=2.0.0
+
+# === Databases: PostgreSQL, ArangoDB, MongoDB, Redis ===
+psycopg[binary]
+psycopg2-binary>=2.9.0
+asyncpg
+sqlalchemy
+python-arango
+arangopy>=0.5.7
+redis
 
 # === Airflow ETL ===
 apache-airflow==2.11.0
 apache-airflow-providers-postgres
 apache-airflow-providers-arangodb
 
-# === Data & ML ===
+# === Data Processing ===
 numpy
 pandas
 scikit-learn

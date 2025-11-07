@@ -52,7 +52,7 @@ class RAGAgent:
                 message=user_message,
                 cdp_profile_id=cdp_profile_id,
                 persona_id=persona_id,
-                touchpoint_id=touchpoint_id,
+                touchpoint_id=touchpoint_id,            
                 keywords=analysis.get("keywords"),
                 last_intent_label=analysis.get("last_intent_label"),
                 last_intent_confidence=analysis.get("last_intent_confidence"),
