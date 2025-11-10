@@ -55,7 +55,7 @@ function initLeoChatBot(context, visitorId, okCallback) {
       showLeoChatBot(currentUserProfile.displayName);
     } 
     else {
-      leoBotShowError(answer, leoBotPromptQuestion);
+      leoBotShowError(data, leoBotPromptQuestion);
     }
   });
 
@@ -312,7 +312,7 @@ var sendQuestionToLeoAI = function (context, question) {
       payload["context"] = context;
       payload["question"] = question;
       payload["visitor_id"] = currentUserProfile.visitorId;
-      payload["answer_in_language"] = "";
+      payload["answer_in_language"] = "Vietnamese";
       payload["answer_in_format"] = "html";
       
       callPostApi(BASE_URL_LEOBOT, payload, serverCallback);
@@ -392,5 +392,5 @@ var startLeoChatBot = function (visitorId) {
     setupChatBot(visitorId);
   }
 
-
 };
+
