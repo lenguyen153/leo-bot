@@ -71,7 +71,7 @@ docker --version
 Then start the database:
 
 ```bash
-./start_pgsql_pgvector.sh
+./dockers/pgsql/start_pgsql_pgvector.sh
 ```
 
 This script:
@@ -85,7 +85,7 @@ This script:
 To **reset the database**, run:
 
 ```bash
-./start_pgsql_pgvector.sh --reset-db
+./dockers/pgsql/start_pgsql_pgvector.sh --reset-db
 ```
 
 You can connect manually:
@@ -115,7 +115,7 @@ GOOGLE_APPLICATION_CREDENTIALS=your_credentials.json
 GEMINI_API_KEY=your_gemini_api_key
 
 REDIS_USER_SESSION_HOST=127.0.0.1
-REDIS_USER_SESSION_PORT=6379
+REDIS_USER_SESSION_PORT=6480
 
 FB_VERIFY_TOKEN=
 FB_PAGE_ACCESS_TOKEN=your_facebook_access_token
